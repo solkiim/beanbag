@@ -49,7 +49,7 @@ class Accel(RaspiDevice):
 
     @staticmethod
     def get_z_rotation(x,y,z):
-        radians = math.atan2(y, Accel.dist(x,y))
+        radians = math.atan2(z, Accel.dist(x,y))
         return math.degrees(radians)
     
     def get_gyro(self):
