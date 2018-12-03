@@ -19,7 +19,7 @@ if __name__ == "__main__":
 			# TODO: replace if statement with equivalent of "if sat on"
 			if True:
 				# play audio
-				pygame.mixer.music.load("test.wav")
+				pygame.mixer.music.load("r2d2.wav")
 				pygame.mixer.music.play()
 				while pygame.mixer.music.get_busy() == True:
 					continue
