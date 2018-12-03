@@ -49,4 +49,4 @@ We connected:
 ### Connecting the LED Strip
 
 Refer to this diagram. Use NPN Transistors (TIP31A).
-<img src="https://i.imgur.com/c2T6hR4.png" width="600">
+<img src="https://i.imgur.com/P6dIJH4.png" width="600">
