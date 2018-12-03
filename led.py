@@ -15,6 +15,7 @@ class LED:
         self._gpwm = None
         self._bpwm = None
         self._freq = freq
+        self._current_color = None
 
     def __del__(self):
         print("I am called!")
@@ -44,6 +45,19 @@ class LED:
         self._rpwm.ChangeDutyCycle(r)
         self._gpwm.ChangeDutyCycle(g)
         self._bpwm.ChangeDutyCycle(b)
+        self._current_color = (r, g, b)
+
+    @classmethod
+    def gradient(cls, color1, color2, n=10):
+        """Returns an array of tuples which are the linear gradients
+        to change from color1 to color2. The gradient will take n steps."""
+        colors = [color1]
+        for t in range(1, n):
+            colors.append(tuple(
+                color1[i] + float(t)/(n-1)*(color2[i] - color1[i])
+                for i in range(3)
+            ))
+        return colors
         
 
 if __name__ == "__main__":
@@ -52,12 +66,10 @@ if __name__ == "__main__":
     led = LED(RED_PIN, GREEN_PIN, BLUE_PIN)
     led.init()
     try:
-        while True:
-            print("Color 1")
-            led.set_color(50, 100, 100)
-            time.sleep(1)
-            print("Color 2")
-            led.set_color(100, 50, 20)
-            time.sleep(1)
+        color1 = (0, 0, 100)
+        color2 = (0, 100, 0)
+        for r, g, b in LED.gradient(color1, color2, 20):
+            led.set_color(r, g, b)
+            time.sleep(0.05)
     finally:
         GPIO.cleanup()
