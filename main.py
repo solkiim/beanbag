@@ -1,13 +1,17 @@
 import smbus
 from gyro import Accel
+from led import LED
 import time
 import pygame
 
 if __name__ == "__main__":
+	GPIO.setmode(GPIO.BOARD)
 	bus = smbus.SMBus(1) # bus = smbus.SMBus(0) fuer Revision 1
 	address = 0x68	   # via i2cdetect
 	gy = Accel(bus, address)
 	pygame.mixer.init()
+	led = LED(RED_PIN, GREEN_PIN, BLUE_PIN)
+	led.init()
 
 	try:
 		while True:
@@ -23,5 +27,13 @@ if __name__ == "__main__":
 				pygame.mixer.music.play()
 				while pygame.mixer.music.get_busy() == True:
 					continue
+				
+				color1 = (0, 0, 100)
+				color2 = (0, 100, 0)
+				for r, g, b in LED.gradient(color1, color2, 20):
+					led.set_color(r, g, b)
+					time.sleep(0.05)
 	except KeyboardInterrupt as ex:
 		print("Done.")
+	finally:
+		GPIO.cleanup()
