@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from device import PWMDevice
 
-SERVO_PIN = 37
+SERVO_PINS = [37, 40]
 
 class ServoSet:
 
@@ -21,11 +21,12 @@ class ServoSet:
 if __name__ == "__main__":
     GPIO.setmode(GPIO.BOARD)
     
-    servos = ServoSet([SERVO_PIN], freq=60)
+    servos = ServoSet(SERVO_PINS, freq=60)
     servos.init()
     try:
         for i in range(0, 100):
-            servos.set(SERVO_PIN, i)
-            time.sleep(0.1)
+            for p in SERVO_PINS:
+                servos.set(p, i)
+                time.sleep(0.1)
     finally:
         GPIO.cleanup()

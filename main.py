@@ -1,10 +1,16 @@
 import smbus
+from device import I2CDevice
 from gyro import Accel
+import RPi.GPIO as GPIO
 from led import LED
 import time
 import pygame
 
 if __name__ == "__main__":
+	RED_PIN   = 7
+	GREEN_PIN = 11
+	BLUE_PIN  = 13
+
 	GPIO.setmode(GPIO.BOARD)
 	bus = smbus.SMBus(1) # bus = smbus.SMBus(0) fuer Revision 1
 	address = 0x68	   # via i2cdetect
