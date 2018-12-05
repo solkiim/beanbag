@@ -6,32 +6,10 @@ import math
 power_mgmt_1 = 0x6b
 power_mgmt_2 = 0x6c
 
-class RaspiDevice:
+class Accel(I2CDevice):
 
     def __init__(self, bus, address):
-        self._bus = bus
-        self._address = address
-
-    def read_byte(self, reg):
-        return self._bus.read_byte_data(self._address, reg)
- 
-    def read_word(self, reg):
-        h = self._bus.read_byte_data(self._address, reg)
-        l = self._bus.read_byte_data(self._address, reg+1)
-        value = (h << 8) + l
-        return value
- 
-    def read_word_2c(self, reg):
-        val = self.read_word(reg)
-        if (val >= 0x8000):
-            return -((65535 - val) + 1)
-        else:
-            return val
-
-class Accel(RaspiDevice):
-
-    def __init__(self, bus, address):
-        RaspiDevice.__init__(self, bus, address)
+        I2CDevice.__init__(self, bus, address)
 
     @staticmethod
     def dist(a,b):
