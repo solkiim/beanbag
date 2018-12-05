@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import smbus
 import math
+from device import I2CDevice
  
 # Register
 power_mgmt_1 = 0x6b

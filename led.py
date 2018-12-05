@@ -5,7 +5,6 @@ from device import PWMDevice
 RED_PIN   = 7
 GREEN_PIN = 11
 BLUE_PIN  = 13
-SERVO_PIN = 37
 
 class LED:
 
