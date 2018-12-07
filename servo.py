@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 from device import PWMDevice
 
-SERVO_PINS = [37, 40]
+SERVO_PINS = [37]
 
 class ServoSet:
 

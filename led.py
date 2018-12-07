@@ -45,10 +45,15 @@ if __name__ == "__main__":
     led = LED(RED_PIN, GREEN_PIN, BLUE_PIN)
     led.init()
     try:
-        color1 = (0, 0, 100)
+    	color1 = (0, 0, 100)
         color2 = (50, 100, 0)
-        for r, g, b in LED.gradient(color1, color2, 10):
-            led.set_color(r, g, b)
-            time.sleep(0.05)
+        while True:
+            for r, g, b in LED.gradient(color1, color2, 30):
+                led.set_color(r, g, b)
+                time.sleep(0.1)
+            # Swapping color for smooth transition back
+            temp_color = color1
+            color1 = color2
+            color2 = temp_color
     finally:
         GPIO.cleanup()
