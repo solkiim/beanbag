@@ -50,3 +50,13 @@ We connected:
 
 Refer to this diagram. Use NPN Transistors (TIP31A).
 <img src="https://i.imgur.com/P6dIJH4.png" width="600">
+
+### Circuit box specs
+
+**Accelerometer** 
+```
+Vcc - RED - 5V
+SCL - GREY - GPIO 3
+SDA - YELLOW - GPIO 2
+```
+
