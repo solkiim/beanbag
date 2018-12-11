@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from LIS3DH import LIS3DH
+from accelerometer import LIS3DH
 from time import sleep
 
 
